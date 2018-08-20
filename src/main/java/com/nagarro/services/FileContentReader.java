@@ -7,16 +7,20 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
 
 import com.nagarro.constants.Constant;
+import com.nagarro.io.Input;
 
 class Search implements Runnable {
 	
 	String file;
+	Input searchCriteria;
 	
-	public Search(String file) {
+	public Search(String file, Input userInput) {
 		this.file = file;
+		this.searchCriteria = userInput;
 	}
 
 	public void run() {
+		System.out.println(this.searchCriteria);
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String line="";
@@ -38,10 +42,10 @@ class Search implements Runnable {
 
 public class FileContentReader {
 	
-	public void searchInFiles(ArrayList<String> files)  {
+	public void searchInFiles(ArrayList<String> files, Input userInput)  {
 		ArrayList<Runnable> list = new ArrayList<Runnable>();
 		for(String file: files) {
-			list.add(new Search(file));
+			list.add(new Search(file, userInput));
 		}
 		ExecutorService pool = Executors.newCachedThreadPool();
 		for(Runnable task: list) {
