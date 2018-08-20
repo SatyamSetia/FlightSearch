@@ -15,7 +15,7 @@ public class FlightSearch {
 		FolderReader folder = new FolderReader();
 		ArrayList<String> files = folder.readFiles(new File(Constant.FOLDER_PATH));
 		FileContentReader file = new FileContentReader();
-		file.searchInFile(files.get(1));
+		file.searchInFiles(files);
 	}
 
 }
