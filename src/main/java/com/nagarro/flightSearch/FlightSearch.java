@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import com.nagarro.constants.Constant;
 import com.nagarro.io.Input;
+import com.nagarro.io.Output;
 import com.nagarro.services.FileContentReader;
 import com.nagarro.services.FolderReader;
 
@@ -19,7 +20,9 @@ public class FlightSearch {
 		Input input = new Input();
 		input.setUserInputs(new Scanner(System.in));
 		FileContentReader file = new FileContentReader();
-		file.searchInFiles(files,input);
+		Output searchResult = new Output();
+		file.searchInFiles(files,input,searchResult);
+		searchResult.display();
 	}
 
 }
