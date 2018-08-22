@@ -1,29 +1,48 @@
 package com.nagarro.entity;
 
+import java.time.LocalDate;
+
+import com.nagarro.utils.DateFormatter;
+
 public class Flight {
 	private String flightNo;
 	private String departure;
 	private String arrival;
-	private String validTillDate;
+	private LocalDate validTillDate;
 	private int flightTime;
 	private float flightDur;
-	private int fare;
+	private float fare;
 	private char seats;
 	private String flightClass;
 	
-	public Flight(String flightNo,String dep,String arr,String date,String time,String duration,String fare,String seats,String flightClass) {
-		this.flightNo = flightNo;
-		this.departure = dep;
-		this.arrival = arr;
-		this.validTillDate = date;
-		this.flightTime = Integer.parseInt(time);
-		this.flightDur = Float.parseFloat(duration);
-		this.fare = Integer.parseInt(fare);
-		this.seats = seats.charAt(0);
-		this.flightClass = flightClass;
+	//constructor initializing flight details.
+	public Flight(String[] flight) {
+		this.flightNo = flight[0];
+		this.departure = flight[1];
+		this.arrival = flight[2];
+		this.validTillDate = LocalDate.parse(DateFormatter.convertToYyyymmdd(flight[3]));
+		this.flightTime = Integer.parseInt(flight[4]);
+		this.flightDur = Float.parseFloat(flight[5]);
+		this.seats = flight[7].charAt(0);
+		this.flightClass = flight[8];
+		this.fare = Float.parseFloat(flight[6]);
 	}
 	
+	public float getFare() {
+		return this.fare;
+	}
+	
+	public float getDuration() {
+		return this.flightDur;
+	}
+	
+	public LocalDate getDate() {
+		return this.validTillDate;
+	}
+	
+	
+	//function to print details of each flight.
 	public void printDetails() {
-		System.out.println(this.flightNo+" "+this.departure+" "+this.arrival+" "+this.validTillDate+" "+this.flightTime+" "+this.flightDur+" "+this.fare+" "+this.seats+" "+this.flightClass);
+		System.out.println(this.flightNo+"\t\t"+this.departure+"\t\t"+this.arrival+"\t\t"+this.validTillDate+"\t\t"+this.flightTime+"\t\t"+this.flightDur+"\t\t"+this.fare+"\t\t"+this.seats+"\t\t"+this.flightClass);
 	}
 }

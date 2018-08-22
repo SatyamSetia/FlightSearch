@@ -1,11 +1,11 @@
-package com.nagarro.io;
+package com.nagarro.dto;
 
-import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Input {
 	private String depLoc;
 	private String arrLoc;
-	private String flightDate;
+	private LocalDate flightDate;
 	private String flightClass;
 	private String outputPref;
 	
@@ -18,7 +18,7 @@ public class Input {
 	}
 	
 	public void setFlightDate(String date) {
-		this.flightDate = date;
+		this.flightDate = LocalDate.parse(date);
 	}
 	
 	public void setFlightClass(String fClass) {
@@ -37,7 +37,7 @@ public class Input {
 		return this.arrLoc;
 	}
 	
-	public String getFlightDate() {
+	public LocalDate getFlightDate() {
 		return this.flightDate;
 	}
 	
@@ -47,18 +47,5 @@ public class Input {
 	
 	public String getOutputPref() {
 		return this.outputPref;
-	}
-	
-	public void setUserInputs(Scanner scan) {
-		System.out.print("Enter Departure Location: ");
-		this.setDeparture(scan.nextLine());
-		System.out.print("Enter Arrival Location: ");
-		this.setArrival(scan.nextLine());
-		System.out.print("Enter date: ");
-		this.setFlightDate(scan.nextLine());
-		System.out.print("Enter class: ");
-		this.setFlightClass(scan.nextLine());
-		System.out.print("Enter Output Preference: ");
-		this.setOutputPref(scan.nextLine());
 	}
 }
